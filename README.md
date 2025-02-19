@@ -1,3 +1,12 @@
+![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)
+![WordPress: 5.2+](https://img.shields.io/badge/WordPress-5.2%2B-blue.svg)
+![PHP: 7.2+](https://img.shields.io/badge/PHP-7.2%2B-blue.svg)
+![Accessibility: Yes](https://img.shields.io/badge/Accessibility-Yes-blue.svg)
+![Responsive: Yes](https://img.shields.io/badge/Responsive-Yes-blue.svg)
+![Multi-language: Yes](https://img.shields.io/badge/Multi--language-Yes-blue.svg)
+![Gutenberg: Yes](https://img.shields.io/badge/Gutenberg-Yes-blue.svg)
+![Page Builders: Yes](https://img.shields.io/badge/Page%20Builders-Yes-blue.svg)
+
 # AGCN (AI-Generated Content Notifier) for WordPress
 
 ## Description
@@ -95,14 +104,6 @@ AGCN is lightweight and optimized for performance. The JavaScript bundle is only
 ## Contributing
 
 Contributions are welcome! Please submit a pull request or open an issue for any enhancements or bug fixes.
-
-## Changelog
-
-### 1.0.0
-- Initial release
-- Basic functionality implementation
-- WordPress integration
-- Gutenberg support
 
 ## License
 
