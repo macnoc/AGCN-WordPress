@@ -1,7 +1,7 @@
 === AGCN (AI-Generated Content Notifier) ===
 Contributors: macnoc
 Donate link: https://github.com/macnoc
-Tags: Widget, AI
+Tags: javascript, widget, ai, banner, artificial-intelligence, notice
 Requires at least: 5.2
 Tested up to: 6.7.2
 Stable tag: 1.0.0

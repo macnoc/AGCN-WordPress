@@ -94,7 +94,7 @@ Yes, AGCN does not collect any personal data and is fully GDPR compliant.
 Yes, AGCN works with most popular page builders including Elementor, Divi, and WPBakery.
 
 ### Does it affect site performance?
-AGCN is lightweight and optimized for performance. The JavaScript bundle is only 12KB minified and gzipped.
+AGCN is lightweight and optimized for performance. The JavaScript bundle is only 41KB minified and gzipped.
 
 ## Support
 
