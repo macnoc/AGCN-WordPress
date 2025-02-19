@@ -1,0 +1,315 @@
+<?php
+/**
+ * AGCN_admin class.
+ * 
+ * This class handles the administration functionality for the AGCN plugin.
+ * It includes methods for adding plugin pages, initializing settings, displaying messages,
+ * and enqueueing scripts.
+ * 
+ * @package AGCN
+ * @author Nabil Makhnouq
+ * @version 1.0
+ */
+class AGCN_admin
+{
+    /**
+     * Constructor method.
+     * 
+     * This method hooks into WordPress actions to add a plugin page, initialize settings,
+     * display messages, and enqueue scripts.
+     */
+    public function __construct()
+    {
+        add_action('admin_menu', [$this, 'add_plugin_page']);
+        add_action('admin_init', [$this, 'page_init']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
+        add_action('admin_notices', [$this, 'agcn_display_message']);
+    }
+
+    /**
+     * Displays a message to the administrator.
+     * 
+     * This method checks for a transient notice and displays it to the administrator.
+     * The notice is then deleted.
+     */
+    public function agcn_display_message()
+    {
+        // Check for transient notice
+        $notice = get_transient('agcn_admin_notice');
+        if ($notice) {
+            $class = 'notice notice-' . esc_attr($notice['type']) .
+                ($notice['dismissible'] ? ' is-dismissible' : '');
+            printf(
+                '<div class="%1$s"><p>%2$s</p></div>',
+                esc_attr($class),
+                esc_html($notice['message'])
+            );
+            delete_transient('agcn_admin_notice');
+        }
+    }
+
+    /**
+     * Adds a plugin page to the WordPress admin menu.
+     * 
+     * This method adds a settings page for the AGCN plugin under the Settings menu.
+     */
+    public function add_plugin_page()
+    {
+        add_options_page(
+            __('AGCN Settings', 'agcn'),
+            __('AGCN', 'agcn'),
+            'manage_options',
+            'agcn-settings',
+            [$this, 'create_admin_page']
+        );
+    }
+
+    /**
+     * Creates the content for the plugin page.
+     * 
+     * This method generates the HTML content for the plugin page, including tabs and forms.
+     */
+    public function create_admin_page()
+    {
+        $allowed_tabs = [
+            'config' => __('Configuration', 'agcn'),
+            'content' => __('Content management', 'agcn'),
+            'styles' => __('Styling', 'agcn')
+        ];
+        $default_tab = 'config';
+
+        $tab_from_url = filter_input(INPUT_GET, 'tab', FILTER_DEFAULT);
+        $tab_from_url = $tab_from_url ? sanitize_text_field($tab_from_url) : $default_tab;
+        $active_tab = key_exists($tab_from_url, $allowed_tabs) ? $tab_from_url : $default_tab;
+?>
+        <div class="wrap">
+            <h1><?php esc_attr_e('AGCN Settings', 'agcn') ?></h1>
+            <nav class="nav-tab-wrapper">
+                <?php foreach ($allowed_tabs as $tab => $name) : ?>
+                    <a href="<?php echo esc_url(admin_url('options-general.php?page=agcn-settings&tab=' . $tab)); ?>"
+                        class="nav-tab <?php echo $active_tab == $tab ? 'nav-tab-active' : ''; ?>">
+                        <?php echo esc_attr($name); ?>
+                    </a>
+                <?php endforeach; ?>
+            </nav>
+            <?php
+
+            if ($active_tab == 'config') {
+            ?>
+                <form method="post" action="options.php">
+                    <?php
+                    settings_fields('agcn_options');
+                    do_settings_sections('agcn_config');
+                    submit_button('Save Configuration');
+                    ?>
+                </form>
+            <?php
+            } elseif ($active_tab == 'content') {
+            ?>
+                <form method="post" action="options.php">
+                    <?php
+                    settings_fields('agcn_options');
+                    do_settings_sections('agcn_content');
+                    submit_button(__('Save Content', 'agcn'));
+                    ?>
+                </form>
+            <?php
+            } elseif ($active_tab == 'styles') {
+            ?>
+                <form method="post" action="options.php">
+                    <?php
+                    settings_fields('agcn_styles');
+                    do_settings_sections('agcn_styles');
+                    submit_button(__('Save Style', 'agcn'));
+                    ?>
+                </form>
+            <?php
+            }
+            ?>
+        </div>
+<?php
+    }
+
+    /**
+     * Initializes settings for the plugin.
+     * 
+     * This method registers settings, sections, and fields for the plugin.
+     */
+    public function page_init()
+    {
+        // Register settings
+        register_setting(
+            'agcn_options', // option group
+            'agcn_options', // option name
+            function ($input) {
+                return AGCN_sanitizers::sanitize_options($input);
+            }
+        );
+
+        register_setting(
+            'agcn_styles',
+            'agcn_styles',
+            function ($input) {
+                return AGCN_sanitizers::sanitize_styles($input);
+            }
+        );
+
+        // Config section
+        add_settings_section(
+            'agcn_config',
+            __('Configuration Settings', 'agcn'),
+            function () {
+                echo '<p>' . esc_attr__('Configure the general settings for the AGCN widget.', 'agcn') . '</p>';
+            },
+            'agcn_config' // page 
+        );
+
+        // Content section
+        add_settings_section(
+            'agcn_content',
+            __('Content Settings', 'agcn'),
+            function () {
+                echo '<p>' . esc_attr__('Configure the content for the AGCN widget.', 'agcn') . '</p>';
+            },
+            'agcn_content' // page
+        );
+
+        // Style section
+        add_settings_section(
+            'agcn_styles',
+            __('Style Settings', 'agcn'),
+            function () {
+                echo '<p>' . esc_attr__('Configure the style for the AGCN widget.', 'agcn') . '</p>';
+            },
+            'agcn_styles' // page
+        );
+
+        // Config fields
+        add_settings_field(
+            'language',
+            __('Default Language', 'agcn'),
+            [AGCN_config_callbacks::class, 'language_callback'],
+            'agcn_config',
+            'agcn_config'
+        );
+
+        add_settings_field(
+            'show_badge',
+            __('Enable Badge', 'agcn'),
+            [AGCN_config_callbacks::class, 'show_badge_callback'],
+            'agcn_config',
+            'agcn_config'
+        );
+
+        add_settings_field(
+            'badge_position',
+            __('Badge Position', 'agcn'),
+            [AGCN_config_callbacks::class, 'badge_position_callback'],
+            'agcn_config',
+            'agcn_config'
+        );
+
+        add_settings_field(
+            'support',
+            __('Show Powered-By Footer', 'agcn'),
+            [AGCN_config_callbacks::class, 'support_callback'],
+            'agcn_config',
+            'agcn_config'
+        );
+
+        // Content fields
+        add_settings_field(
+            'add_language',
+            __('Add New Language', 'agcn'),
+            [AGCN_content_callbacks::class, 'add_language_callback'],
+            'agcn_content',
+            'agcn_content'
+        );
+
+        add_settings_field(
+            'select_language',
+            __('Select Language', 'agcn'),
+            [AGCN_content_callbacks::class, 'select_language_callback'],
+            'agcn_content',
+            'agcn_content'
+        );
+        add_settings_field(
+            'header',
+            __('Header Text', 'agcn'),
+            [AGCN_content_callbacks::class, 'header_callback'],
+            'agcn_content',
+            'agcn_content'
+        );
+
+        add_settings_field(
+            'title',
+            __('Title Text', 'agcn'),
+            [AGCN_content_callbacks::class, 'title_callback'],
+            'agcn_content',
+            'agcn_content'
+        );
+
+        add_settings_field(
+            'body',
+            __('Body Text', 'agcn'),
+            [AGCN_content_callbacks::class, 'body_callback'],
+            'agcn_content',
+            'agcn_content'
+        );
+
+        add_settings_field(
+            'sections_header',
+            __('Sections Header', 'agcn'),
+            [AGCN_content_callbacks::class, 'sections_header_callback'],
+            'agcn_content',
+            'agcn_content'
+        );
+
+        add_settings_field(
+            'sections',
+            __('Sections', 'agcn'),
+            [AGCN_content_callbacks::class, 'sections_callback'],
+            'agcn_content',
+            'agcn_content'
+        );
+
+        // Style fields
+        add_settings_field(
+            'colors',
+            __('Colors Settings', 'agcn'),
+            [AGCN_styles_callbacks::class, 'color_callback'],
+            'agcn_styles',
+            'agcn_styles',
+        );
+
+        add_settings_field(
+            'badge-offset',
+            __('Badge Offset', 'agcn'),
+            [AGCN_styles_callbacks::class, 'badge_offset_callback'],
+            'agcn_styles',
+            'agcn_styles',
+        );
+    }
+
+    /**
+     * Enqueues scripts for the plugin page.
+     * 
+     * This method enqueues a script for the plugin page.
+     * 
+     * @param string $hook The current admin page hook.
+     */
+    public function enqueue_admin_scripts($hook)
+    {
+        if ('settings_page_agcn-settings' !== $hook) {
+            return;
+        }
+
+        wp_enqueue_script(
+            'agcn-admin',
+            AGCN_PLUGIN_URL . 'admin/js/admin.js',
+            array(),
+            AGCN_VERSION,
+            true
+        );
+    }
+}
