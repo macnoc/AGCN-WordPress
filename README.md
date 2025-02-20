@@ -32,8 +32,10 @@ AGCN is a WordPress plugin that seamlessly integrates with your website to infor
 
 ### Manual Installation
 1. Download the latest release from the [WordPress plugin repository]() or [GitHub releases]()
-2. Upload the `agcn` folder to the `/wp-content/plugins/` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
+2. Extract the downloaded ZIP file
+3. Rename the extracted folder to `agcn`
+4. Upload the `agcn` folder to the `/wp-content/plugins/` directory
+5. Activate the plugin through the 'Plugins' menu in WordPress
 
 ## Configuration
 
