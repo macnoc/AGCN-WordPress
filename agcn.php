@@ -17,7 +17,7 @@
  * Requires PHP:      7.4
  * Author:            Macnoc
  * Author URI:        https://github.com/macnoc
- * Text Domain:       agcn
+ * Text Domain:       agcn-ai-generated-content-notifier
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * 
