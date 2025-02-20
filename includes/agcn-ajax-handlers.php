@@ -6,6 +6,7 @@
  * This class handles AJAX requests for the AGCN plugin.
  * It includes methods for adding and removing languages.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -63,14 +64,16 @@ class AGCN_ajax_handlers
             }
 
             // Check if language is available
-            $available_languages = AGCN_plugin::get_config('available_languages');
+            $available_languages = AGCN_plugin::agcn_get_config('available_languages');
             $available_languages_keys = array_keys($available_languages);
             if (!in_array($language, $available_languages_keys)) {
                 wp_send_json_error(__('This language is not available', 'agcn'));
             }
+            
+            $language_name = $available_languages[$language];
 
             // Create empty structure
-            $options['content'][$language] = [];
+            $options['content'][$language] = array();
 
             // Update options
             $update_result = update_option('agcn_options', $options);
@@ -81,7 +84,11 @@ class AGCN_ajax_handlers
             // Set transient
             set_transient('agcn_admin_notice', [
                 'type' => 'success',
-                'message' => __('Language added successfully!', 'agcn'),
+                'message' => sprintf(
+                    /* translators: %s: The name of the language that was added */
+                    __('Language %s added successfully!', 'agcn'),
+                    $language_name
+                ),
                 'dismissible' => true
             ], 30);
 
@@ -133,8 +140,12 @@ class AGCN_ajax_handlers
                 wp_send_json_error(__('Cannot remove last language', 'agcn'));
             }
 
+            // Get language name
+            $available_languages = AGCN_plugin::agcn_get_config('available_languages');
+            $language_name = $available_languages[$language] ?? $language;
+
             // Remove language
-            $options['content'][$language] = [];
+            $options['content'][$language] = array();
 
             // Update options
             $update_result = update_option('agcn_options', ['remove_language' => $language]);
@@ -145,7 +156,11 @@ class AGCN_ajax_handlers
             // Set transient
             set_transient('agcn_admin_notice', [
                 'type' => 'success',
-                'message' => __('Language removed successfully!', 'agcn'),
+                'message' => sprintf(
+                    /* translators: %s: The name of the language that was removed */
+                    __('Language %s removed successfully!', 'agcn'),
+                    $language_name
+                ),
                 'dismissible' => true
             ], 30);
 

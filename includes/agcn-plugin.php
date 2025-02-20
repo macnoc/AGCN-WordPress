@@ -6,6 +6,7 @@
  * This class handles the plugin configuration and activation.
  * It includes methods for retrieving configuration, activating the plugin, and deactivating the plugin.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -23,7 +24,7 @@ class AGCN_plugin
      * @param string $config The configuration to retrieve.
      * @return array The configuration.
      */
-    public static function get_config($config)
+    public static function agcn_get_config($config)
     {
         if (self::$default === null) {
             self::$default = require AGCN_PLUGIN_DIR . 'agcn-config.php';
@@ -37,23 +38,33 @@ class AGCN_plugin
      * 
      * This method checks if the options and styles are already set and updates them if not.
      */
-    public static function activator()
+    public static function agcn_activator()
     {
-        if (!get_option('agcn_options')) {
-            update_option('agcn_options', self::get_config('options_default'));
-        }
+        try {
+            if (!get_option('agcn_options')) {
+                if (!update_option('agcn_options', self::agcn_get_config('options_default'))) {
+                    throw new Exception('Failed to create options. <a href="' . admin_url('plugins.php') . '">Go to plugins page</a>');
+                }
+            }
 
-        if (!get_option('agcn_styles')) {
-            update_option('agcn_styles', self::get_config('styles_default'));
+            if (!get_option('agcn_styles')) {
+                if (!update_option('agcn_styles', self::agcn_get_config('styles_default'))) {
+                    throw new Exception('Failed to create styles. <a href="' . admin_url('plugins.php') . '">Go to plugins page</a>');
+                }
+            }
+        } catch (Exception $e) {
+            // Deactivate the plugin
+            deactivate_plugins(plugin_basename(__FILE__));
+            wp_die(esc_html($e->getMessage()));
         }
     }
 
     /**
      * Deactivates the AGCN plugin.
      * 
-     * This method flushes the cache.
+     * This method flushes the cache and performs any other cleanup tasks.
      */
-    public static function deactivator()
+    public static function agcn_deactivator()
     {
         wp_cache_flush();
     }
@@ -80,7 +91,7 @@ class AGCN_plugin
         load_plugin_textdomain(
             'agcn',
             false,
-            dirname(plugin_basename(__FILE__)) . '/languages'
+            dirname(AGCN_PLUGIN_BASENAME) . '/languages/'
         );
     }
 }

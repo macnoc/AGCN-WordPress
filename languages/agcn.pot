@@ -1,0 +1,332 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: AGCN (AI-Generated Content Notifier)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-20 03:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.7.1; wp-6.7.2\n"
+"X-Domain: agcn"
+
+#. Description of the plugin
+msgid ""
+"A modern WordPress plugin to inform visitors about AI-generated content on "
+"your website."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:224
+msgid "Add New Language"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:302
+msgid "Add New Section"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:61
+msgid "AGCN"
+msgstr ""
+
+#. Name of the plugin
+msgid "AGCN (AI-Generated Content Notifier)"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:60
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:87
+msgid "AGCN Settings"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:70
+msgid "All languages are already added."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:99
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:171
+msgid "An unexpected error occurred."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:146
+msgid "Are you sure you want to remove this language?"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:27
+msgid "Badge Background Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:28
+msgid "Badge Background Color (Hover)"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:29
+msgid "Badge Border Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:26
+msgid "Badge Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:288
+msgid "Badge Offset"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:207
+msgid "Badge Position"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:255
+msgid "Body Text"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-config-callbacks.php:67
+msgid "Bottom Left"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-config-callbacks.php:68
+msgid "Bottom Right"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:140
+msgid "Cannot remove last language"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:280
+msgid "Colors Settings"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:76
+msgid "Configuration"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:161
+msgid "Configuration Settings"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:173
+msgid "Configure the content for the AGCN widget."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:163
+msgid "Configure the general settings for the AGCN widget."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:183
+msgid "Configure the style for the AGCN widget."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:77
+msgid "Content management"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:171
+msgid "Content Settings"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:191
+msgid "Default Language"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:199
+msgid "Enable Badge"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:81
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:153
+msgid "Failed to update options"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:239
+msgid "Header Text"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/macnoc"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/macnoc/AGCN"
+msgstr ""
+
+#. %s: The name of the language that was added
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:89
+#, php-format
+msgid "Language %s added successfully!"
+msgstr ""
+
+#. %s: The name of the language that was removed
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:161
+#, php-format
+msgid "Language %s removed successfully!"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:63
+msgid "Language already exists"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:135
+msgid "Language does not exist"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:53
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:124
+msgid "Language not provided"
+msgstr ""
+
+#. Author of the plugin
+msgid "Macnoc"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:25
+msgid "Main Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:36
+msgid "Modal Accordion Open Background Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:32
+msgid "Modal Background Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:33
+msgid "Modal Border Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:31
+msgid "Modal Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:34
+msgid "Modal Icon Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:35
+msgid "Modal Support Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:39
+msgid "Notice Background Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:40
+msgid "Notice Border Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:38
+msgid "Notice Color"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:274
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:344
+msgid "Notice text for the section"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:114
+msgid "Save Content"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:124
+msgid "Save Style"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:279
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:350
+msgid "Section Title"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:271
+msgid "Sections"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:263
+msgid "Sections Header"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:43
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:114
+msgid "Security check failed."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:232
+msgid "Select Language"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-config-callbacks.php:70
+msgid "Select the position where the badge will be displayed on the screen."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-plugin.php:79
+msgid "Settings"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:215
+msgid "Show Powered-By Footer"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-config-callbacks.php:49
+msgid "Show the AGCN badge on the front end."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:269
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:338
+msgid "Slug for the section, only a-z."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:181
+msgid "Style Settings"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:78
+msgid "Styling"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-config-callbacks.php:86
+msgid "Support AGCN by displaying a \"Powered by\" footer note with a link."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:231
+msgid "The body of the modal content"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-styles-callbacks.php:73
+msgid "The space between the badge and the viewport edge."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:208
+msgid "The title of the modal content"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:70
+msgid "This language is not available"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:246
+msgid "This text will be displayed above the sections."
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-content-callbacks.php:192
+msgid "This text will be displayed above the title as the modal header"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-admin.php:247
+msgid "Title Text"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-config-callbacks.php:65
+msgid "Top Left"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-config-callbacks.php:66
+msgid "Top Right"
+msgstr ""
+
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:48
+#: ../../../../../../../Projects/AGCN-WordPress/includes/agcn-ajax-handlers.php:119
+msgid "You do not have permission to perform this action."
+msgstr ""

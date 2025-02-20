@@ -6,6 +6,7 @@
  * This class handles the configuration callbacks for the AGCN plugin.
  * It includes methods for displaying language selection, badge position, and support options.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -18,9 +19,9 @@ class AGCN_config_callbacks
      * This method retrieves the available languages and the current language from the plugin options.
      * It then generates a dropdown for selecting the language.
      */
-    public static function language_callback()
+    public static function agcn_language_callback()
     {
-        $available_languages = AGCN_plugin::get_config('available_languages');
+        $available_languages = AGCN_plugin::agcn_get_config('available_languages');
         $options = get_option('agcn_options');
 
 ?>
@@ -38,7 +39,7 @@ class AGCN_config_callbacks
      * 
      * This method retrieves the badge position from the plugin options and generates a dropdown for selecting the position.
      */
-    public static function show_badge_callback()
+    public static function agcn_show_badge_callback()
     {
         $options = get_option('agcn_options');
         $show_badge = $options['config']['show_badge'] ?? false;
@@ -54,7 +55,7 @@ class AGCN_config_callbacks
      * 
      * This method retrieves the badge position from the plugin options and generates a dropdown for selecting the position.
      */
-    public static function badge_position_callback()
+    public static function agcn_badge_position_callback()
     {
         $options = get_option('agcn_options');
         $badge_position = $options['config']['badge_position'] ?? 'top-left';
@@ -75,7 +76,7 @@ class AGCN_config_callbacks
      * 
      * This method retrieves the support option from the plugin options and generates a checkbox for displaying the support note.
      */
-    public static function support_callback()
+    public static function agcn_support_callback()
     {
         $options = get_option('agcn_options');
         $support = $options['config']['support'] ?? false;

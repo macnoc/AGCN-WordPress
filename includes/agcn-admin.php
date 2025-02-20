@@ -6,6 +6,7 @@
  * It includes methods for adding plugin pages, initializing settings, displaying messages,
  * and enqueueing scripts.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -20,9 +21,9 @@ class AGCN_admin
      */
     public function __construct()
     {
-        add_action('admin_menu', [$this, 'add_plugin_page']);
-        add_action('admin_init', [$this, 'page_init']);
-        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
+        add_action('admin_menu', [$this, 'agcn_add_plugin_page']);
+        add_action('admin_init', [$this, 'agcn_page_init']);
+        add_action('admin_enqueue_scripts', [$this, 'agcn_enqueue_admin_scripts']);
         add_action('admin_notices', [$this, 'agcn_display_message']);
     }
 
@@ -53,14 +54,14 @@ class AGCN_admin
      * 
      * This method adds a settings page for the AGCN plugin under the Settings menu.
      */
-    public function add_plugin_page()
+    public function agcn_add_plugin_page()
     {
         add_options_page(
             __('AGCN Settings', 'agcn'),
             __('AGCN', 'agcn'),
             'manage_options',
             'agcn-settings',
-            [$this, 'create_admin_page']
+            [$this, 'agcn_create_admin_page']
         );
     }
 
@@ -69,18 +70,18 @@ class AGCN_admin
      * 
      * This method generates the HTML content for the plugin page, including tabs and forms.
      */
-    public function create_admin_page()
+    public function agcn_create_admin_page()
     {
-        $allowed_tabs = [
+        $allowed_tabs = array(
             'config' => __('Configuration', 'agcn'),
             'content' => __('Content management', 'agcn'),
             'styles' => __('Styling', 'agcn')
-        ];
+        );
         $default_tab = 'config';
 
         $tab_from_url = filter_input(INPUT_GET, 'tab', FILTER_DEFAULT);
         $tab_from_url = $tab_from_url ? sanitize_text_field($tab_from_url) : $default_tab;
-        $active_tab = key_exists($tab_from_url, $allowed_tabs) ? $tab_from_url : $default_tab;
+        $active_tab = array_key_exists($tab_from_url, $allowed_tabs) ? $tab_from_url : $default_tab;
 ?>
         <div class="wrap">
             <h1><?php esc_attr_e('AGCN Settings', 'agcn') ?></h1>
@@ -135,14 +136,14 @@ class AGCN_admin
      * 
      * This method registers settings, sections, and fields for the plugin.
      */
-    public function page_init()
+    public function agcn_page_init()
     {
         // Register settings
         register_setting(
             'agcn_options', // option group
             'agcn_options', // option name
             function ($input) {
-                return AGCN_sanitizers::sanitize_options($input);
+                return AGCN_sanitizers::agcn_sanitize_options($input);
             }
         );
 
@@ -150,7 +151,7 @@ class AGCN_admin
             'agcn_styles',
             'agcn_styles',
             function ($input) {
-                return AGCN_sanitizers::sanitize_styles($input);
+                return AGCN_sanitizers::agcn_sanitize_styles($input);
             }
         );
 
@@ -188,7 +189,7 @@ class AGCN_admin
         add_settings_field(
             'language',
             __('Default Language', 'agcn'),
-            [AGCN_config_callbacks::class, 'language_callback'],
+            [AGCN_config_callbacks::class, 'agcn_language_callback'],
             'agcn_config',
             'agcn_config'
         );
@@ -196,7 +197,7 @@ class AGCN_admin
         add_settings_field(
             'show_badge',
             __('Enable Badge', 'agcn'),
-            [AGCN_config_callbacks::class, 'show_badge_callback'],
+            [AGCN_config_callbacks::class, 'agcn_show_badge_callback'],
             'agcn_config',
             'agcn_config'
         );
@@ -204,7 +205,7 @@ class AGCN_admin
         add_settings_field(
             'badge_position',
             __('Badge Position', 'agcn'),
-            [AGCN_config_callbacks::class, 'badge_position_callback'],
+            [AGCN_config_callbacks::class, 'agcn_badge_position_callback'],
             'agcn_config',
             'agcn_config'
         );
@@ -212,7 +213,7 @@ class AGCN_admin
         add_settings_field(
             'support',
             __('Show Powered-By Footer', 'agcn'),
-            [AGCN_config_callbacks::class, 'support_callback'],
+            [AGCN_config_callbacks::class, 'agcn_support_callback'],
             'agcn_config',
             'agcn_config'
         );
@@ -221,7 +222,7 @@ class AGCN_admin
         add_settings_field(
             'add_language',
             __('Add New Language', 'agcn'),
-            [AGCN_content_callbacks::class, 'add_language_callback'],
+            [AGCN_content_callbacks::class, 'agcn_add_language_callback'],
             'agcn_content',
             'agcn_content'
         );
@@ -229,14 +230,14 @@ class AGCN_admin
         add_settings_field(
             'select_language',
             __('Select Language', 'agcn'),
-            [AGCN_content_callbacks::class, 'select_language_callback'],
+            [AGCN_content_callbacks::class, 'agcn_select_language_callback'],
             'agcn_content',
             'agcn_content'
         );
         add_settings_field(
             'header',
             __('Header Text', 'agcn'),
-            [AGCN_content_callbacks::class, 'header_callback'],
+            [AGCN_content_callbacks::class, 'agcn_header_callback'],
             'agcn_content',
             'agcn_content'
         );
@@ -244,7 +245,7 @@ class AGCN_admin
         add_settings_field(
             'title',
             __('Title Text', 'agcn'),
-            [AGCN_content_callbacks::class, 'title_callback'],
+            [AGCN_content_callbacks::class, 'agcn_title_callback'],
             'agcn_content',
             'agcn_content'
         );
@@ -252,7 +253,7 @@ class AGCN_admin
         add_settings_field(
             'body',
             __('Body Text', 'agcn'),
-            [AGCN_content_callbacks::class, 'body_callback'],
+            [AGCN_content_callbacks::class, 'agcn_body_callback'],
             'agcn_content',
             'agcn_content'
         );
@@ -260,7 +261,7 @@ class AGCN_admin
         add_settings_field(
             'sections_header',
             __('Sections Header', 'agcn'),
-            [AGCN_content_callbacks::class, 'sections_header_callback'],
+            [AGCN_content_callbacks::class, 'agcn_sections_header_callback'],
             'agcn_content',
             'agcn_content'
         );
@@ -268,7 +269,7 @@ class AGCN_admin
         add_settings_field(
             'sections',
             __('Sections', 'agcn'),
-            [AGCN_content_callbacks::class, 'sections_callback'],
+            [AGCN_content_callbacks::class, 'agcn_sections_callback'],
             'agcn_content',
             'agcn_content'
         );
@@ -277,7 +278,7 @@ class AGCN_admin
         add_settings_field(
             'colors',
             __('Colors Settings', 'agcn'),
-            [AGCN_styles_callbacks::class, 'color_callback'],
+            [AGCN_styles_callbacks::class, 'agcn_color_callback'],
             'agcn_styles',
             'agcn_styles',
         );
@@ -285,7 +286,7 @@ class AGCN_admin
         add_settings_field(
             'badge-offset',
             __('Badge Offset', 'agcn'),
-            [AGCN_styles_callbacks::class, 'badge_offset_callback'],
+            [AGCN_styles_callbacks::class, 'agcn_badge_offset_callback'],
             'agcn_styles',
             'agcn_styles',
         );
@@ -298,7 +299,7 @@ class AGCN_admin
      * 
      * @param string $hook The current admin page hook.
      */
-    public function enqueue_admin_scripts($hook)
+    public function agcn_enqueue_admin_scripts($hook)
     {
         if ('settings_page_agcn-settings' !== $hook) {
             return;

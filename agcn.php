@@ -10,7 +10,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       AGCN (AI-Generated Content Notifier)
- * Plugin URI:        https://github.com/macnoc/AGCN
+ * Plugin URI:        https://github.com/macnoc/AGCN-WordPress
  * Description:       A modern WordPress plugin to inform visitors about AI-generated content on your website.
  * Version:           1.0.0
  * Requires at least: 5.2
@@ -32,6 +32,7 @@ if (!defined('WPINC')) {
 define('AGCN_VERSION', '1.0.0');
 define('AGCN_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AGCN_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('AGCN_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 // Include required files
 foreach (glob(AGCN_PLUGIN_DIR . 'includes' . '/*.php') as $file) {
@@ -39,8 +40,8 @@ foreach (glob(AGCN_PLUGIN_DIR . 'includes' . '/*.php') as $file) {
 }
 
 // Register activation and deactivation hooks
-register_activation_hook(__FILE__, [AGCN_plugin::class, 'activator']);
-register_deactivation_hook(__FILE__, [AGCN_plugin::class, 'deactivator']);
+register_activation_hook(__FILE__, [AGCN_plugin::class, 'agcn_activator']);
+register_deactivation_hook(__FILE__, [AGCN_plugin::class, 'agcn_deactivator']);
 
 // If in admin, initialize admin classes
 if (is_admin()) {

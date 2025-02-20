@@ -6,6 +6,7 @@
  * This class handles the content callbacks for the AGCN plugin.
  * It includes methods for displaying language selection, header, title, body, sections, and sections header.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -23,10 +24,10 @@ class AGCN_content_callbacks
      * 
      * @return array The available languages.
      */
-    public static function get_available_languages()
+    public static function agcn_get_available_languages()
     {
         if (self::$available_languages === null) {
-            self::$available_languages = AGCN_plugin::get_config('available_languages');
+            self::$available_languages = AGCN_plugin::agcn_get_config('available_languages');
         }
         return self::$available_languages;
     }
@@ -39,7 +40,7 @@ class AGCN_content_callbacks
      * 
      * @return string The selected language.
      */
-    public static function get_selected_language()
+    public static function agcn_get_selected_language()
     {
         if (self::$selected_language === null) {
             
@@ -60,18 +61,18 @@ class AGCN_content_callbacks
      * This method retrieves the existing languages and checks if all available languages are already added.
      * If not, it displays a dropdown for selecting a new language and a button to add it.
      */
-    public static function add_language_callback()
+    public static function agcn_add_language_callback()
     {
         $options = get_option('agcn_options');
         $existing_languages = array_keys($options['content'] ?? []);
 
-        if (count(self::get_available_languages()) === count($existing_languages)) {
+        if (count(self::agcn_get_available_languages()) === count($existing_languages)) {
             echo '<p>' . esc_html(__('All languages are already added.', 'agcn')) . '</p>';
             return;
         }
 ?>
         <select id="new-language">
-            <?php foreach (self::get_available_languages() as $key => $name) : ?>
+            <?php foreach (self::agcn_get_available_languages() as $key => $name) : ?>
                 <?php if (!in_array($key, $existing_languages)) : ?>
                     <option value="<?php echo esc_attr($key); ?>"><?php echo esc_html($name); ?></option>
                 <?php endif; ?>
@@ -119,7 +120,7 @@ class AGCN_content_callbacks
      * This method retrieves the available languages and the current language from the plugin options.
      * It then generates a dropdown for selecting the language.
      */
-    public static function select_language_callback()
+    public static function agcn_select_language_callback()
     {
 
         $options = get_option('agcn_options');
@@ -127,8 +128,8 @@ class AGCN_content_callbacks
 
         <select id="language">
             <?php foreach ($options['content'] as $key => $value) : ?>
-                <?php $selected_language_name = self::get_available_languages()[$key] ?? $key; ?>
-                <option value="<?php echo esc_attr($key); ?>" <?php selected(self::get_selected_language(), $key); ?>><?php echo esc_attr($selected_language_name); ?></option>
+                <?php $selected_language_name = self::agcn_get_available_languages()[$key] ?? $key; ?>
+                <option value="<?php echo esc_attr($key); ?>" <?php selected(self::agcn_get_selected_language(), $key); ?>><?php echo esc_attr($selected_language_name); ?></option>
             <?php endforeach; ?>
         </select>
         <button type="button" id="remove-language" class="button">Remove language</button>
@@ -181,13 +182,13 @@ class AGCN_content_callbacks
      * 
      * This method retrieves the header text from the plugin options and displays it in an input field.
      */
-    public static function header_callback()
+    public static function agcn_header_callback()
     {
         $options = get_option('agcn_options');
-        $header = esc_attr($options['content'][self::get_selected_language()]['header']) ?? '';
+        $header = esc_attr($options['content'][self::agcn_get_selected_language()]['header']) ?? '';
     ?>
 
-        <input type="text" name="agcn_options[content][<?php echo esc_attr(self::get_selected_language()) ?>][header]" value="<?php echo esc_attr($header); ?>" class="regular-text large-text">
+        <input type="text" name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()) ?>][header]" value="<?php echo esc_attr($header); ?>" class="regular-text large-text">
         <p class="description"><?php esc_html_e('This text will be displayed above the title as the modal header', 'agcn'); ?></p>
     <?php
     }
@@ -197,14 +198,14 @@ class AGCN_content_callbacks
      * 
      * This method retrieves the title text from the plugin options and displays it in an input field.
      */
-    public static function title_callback()
+    public static function agcn_title_callback()
     {
         $options = get_option('agcn_options');
-        $title = $options['content'][self::get_selected_language()]['title'] ?? '';
+        $title = $options['content'][self::agcn_get_selected_language()]['title'] ?? '';
     ?>
 
-        <input type="text" name="agcn_options[content][<?php echo esc_attr(self::get_selected_language()) ?>][title]" value="<?php echo esc_attr($title); ?>" class="regular-text large-text">
-        <p class="description"><?php esc_html_e('The title of', 'agcn'); ?></p>
+        <input type="text" name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()) ?>][title]" value="<?php echo esc_attr($title); ?>" class="regular-text large-text">
+        <p class="description"><?php esc_html_e('The title of the modal content', 'agcn'); ?></p>
     <?php
     }
 
@@ -213,13 +214,13 @@ class AGCN_content_callbacks
      * 
      * This method retrieves the body text from the plugin options and displays it in an editor.
      */
-    public static function body_callback()
+    public static function agcn_body_callback()
     {
         $options = get_option('agcn_options');
-        $body = $options['content'][self::get_selected_language()]['body'] ?? '';
+        $body = $options['content'][self::agcn_get_selected_language()]['body'] ?? '';
 
         wp_editor($body, 'agcn_editor_body', [
-            'textarea_name' => "agcn_options[content][" . self::get_selected_language() . "][body]",
+            'textarea_name' => "agcn_options[content][" . self::agcn_get_selected_language() . "][body]",
             'media_buttons' => false,
             'tinymce'       => [
                 'toolbar1' => 'bold,italic,underline,bullist,numlist,link,unlink,removeformat',
@@ -235,13 +236,13 @@ class AGCN_content_callbacks
      * 
      * This method retrieves the sections header text from the plugin options and displays it in an input field.
      */
-    public static function sections_header_callback()
+    public static function agcn_sections_header_callback()
     {
         $options = get_option('agcn_options');
-        $sections_header = esc_attr($options['content'][self::get_selected_language()]['sections_header']) ?? '';
+        $sections_header = esc_attr($options['content'][self::agcn_get_selected_language()]['sections_header']) ?? '';
     ?>
 
-    <input type="text" name="agcn_options[content][<?php echo esc_attr(self::get_selected_language()) ?>][sections_header]" value="<?php echo esc_attr($sections_header); ?>" class="regular-text large-text">
+    <input type="text" name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()) ?>][sections_header]" value="<?php echo esc_attr($sections_header); ?>" class="regular-text large-text">
     <p class="description"><?php esc_html_e('This text will be displayed above the sections.', 'agcn'); ?></p>
     <?php
     }
@@ -251,29 +252,29 @@ class AGCN_content_callbacks
      * 
      * This method retrieves the sections from the plugin options and displays them in a list of sections.
      */
-    public static function sections_callback()
+    public static function agcn_sections_callback()
     {
         wp_enqueue_editor();
         $options = get_option('agcn_options');
-        $sections = $options['content'][self::get_selected_language()]['sections'] ?? [];
+        $sections = $options['content'][self::agcn_get_selected_language()]['sections'] ?? [];
     ?>
         <div id="agcn-sections-wrapper">
-            <div id="agcn-sections-list">
+            <div id="agcn-sections-list" aria-label="Sections">
                 <?php foreach ($sections as $index => $section) : ?>
                     <div class="agcn-section-item">
                         <input type="text"
                             class="section-slug large-text"
-                            name="agcn_options[content][<?php echo esc_attr(self::get_selected_language()); ?>][sections][slug][]"
+                            name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()); ?>][sections][slug][]"
                             value="<?php echo esc_attr($section['slug']); ?>"
                             placeholder="<?php esc_attr_e( 'Slug for the section, only a-z.', 'agcn' ); ?>" />
                         <input type="text"
                             class="section-notice-text large-text"
-                            name="agcn_options[content][<?php echo esc_attr(self::get_selected_language()); ?>][sections][notice_text][]"
+                            name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()); ?>][sections][notice_text][]"
                             value="<?php echo esc_attr($section['notice_text']); ?>"
                             placeholder="<?php esc_attr_e( 'Notice text for the section', 'agcn' ); ?>" />
                         <input type="text"
                             class="section-title large-text"
-                            name="agcn_options[content][<?php echo esc_attr(self::get_selected_language()); ?>][sections][title][]"
+                            name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()); ?>][sections][title][]"
                             value="<?php echo esc_attr($section['title']); ?>"
                             placeholder="<?php esc_attr_e('Section Title', 'agcn'); ?>" />
                         <div class="section-body-container">
@@ -282,7 +283,7 @@ class AGCN_content_callbacks
                                 $section['body'],
                                 'section_body_' . $index,
                                 [
-                                    'textarea_name' => "agcn_options[content][" . self::get_selected_language() . "][sections][body][]",
+                                    'textarea_name' => "agcn_options[content][" . self::agcn_get_selected_language() . "][sections][body][]",
                                     'media_buttons' => false,
                                     'tinymce'       => [
                                         'height' => 150,
@@ -321,7 +322,7 @@ class AGCN_content_callbacks
             document.addEventListener('DOMContentLoaded', function() {
                 const addSectionBtn = document.getElementById('add-section');
                 const sectionsList = document.getElementById('agcn-sections-list');
-                const language = '<?php echo esc_js(self::get_selected_language()); ?>';
+                const language = '<?php echo esc_js(self::agcn_get_selected_language()); ?>';
                 let editorCount = <?php echo count($sections); ?>;
 
                 addSectionBtn.addEventListener('click', function() {

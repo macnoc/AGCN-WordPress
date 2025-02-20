@@ -5,6 +5,7 @@
  * 
  * This class handles the styles callbacks for the AGCN plugin.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -16,11 +17,11 @@ class AGCN_styles_callbacks
      * 
      * This method retrieves the styles options and displays the color picker for the AGCN plugin.
      */
-    public static function color_callback()
+    public static function agcn_color_callback()
     {
         $options = get_option('agcn_styles');
 
-        $colors_labels = [
+        $colors_labels = array(
             'main-color' =>  __('Main Color', 'agcn'),
             'badge-color' =>  __('Badge Color', 'agcn'),
             'badge-bg-color' =>  __('Badge Background Color', 'agcn'),
@@ -37,7 +38,7 @@ class AGCN_styles_callbacks
             'notice-color' => __('Notice Color', 'agcn'),
             'notice-bg-color' => __('Notice Background Color', 'agcn'),
             'notice-border-color' => __('Notice Border Color', 'agcn'),
-        ]
+        );
 
 ?>
         <?php foreach ($colors_labels as $key => $label) : ?>
@@ -62,7 +63,7 @@ class AGCN_styles_callbacks
      * 
      * This method retrieves the styles options and displays the badge offset for the AGCN plugin.
      */
-    public static function badge_offset_callback()
+    public static function agcn_badge_offset_callback()
     {
         $options = get_option('agcn_styles');
         $badge_offset = $options['badge-offset'] ?? '0rem';

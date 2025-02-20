@@ -5,6 +5,7 @@
  * 
  * This class handles the sanitization of the AGCN plugin.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -18,10 +19,10 @@ class AGCN_sanitizers
      * @param array $input The input to sanitize.
      * @return array The sanitized options.
      */
-    public static function sanitize_options($input)
+    public static function agcn_sanitize_options($input)
     {
         $current_options = get_option('agcn_options');
-        $sanitized = [];
+        $sanitized = array();
 
         if (!is_array($input)) {
             return $current_options;
@@ -52,25 +53,25 @@ class AGCN_sanitizers
         if (isset($input['content']) && is_array($input['content'])) {
 
             foreach ($input['content'] as $lang => $content) {
-                $allowed_tags = [
-                    'a'      => ['href' => [], 'title' => [], 'target' => []],
-                    'strong' => [],
-                    'em'     => [],
-                    'u'      => [],
-                    'p'      => [],
-                    'br'     => [],
-                    'ul'     => [],
-                    'ol'     => [],
-                    'li'     => [],
-                ];
+                $allowed_tags = array(
+                    'a'      => array('href' => array(), 'title' => array(), 'target' => array()),
+                    'strong' => array(),
+                    'em'     => array(),
+                    'u'      => array(),
+                    'p'      => array(),
+                    'br'     => array(),
+                    'ul'     => array(),
+                    'ol'     => array(),
+                    'li'     => array(),
+                );
 
-                $sanitized['content'][$lang] = [
+                $sanitized['content'][$lang] = array(
                     'header' => sanitize_text_field($content['header'] ?? $current_options['content'][$lang]['header'] ?? ''),
                     'title' => sanitize_text_field($content['title'] ?? $current_options['content'][$lang]['title'] ?? ''),
                     'body' => wp_kses($content['body'] ?? $current_options['content'][$lang]['body'] ?? '', $allowed_tags),
                     'sections_header' => sanitize_text_field($content['sections_header'] ?? $current_options['content'][$lang]['sections_header'] ?? ''),
-                    'sections' => [],
-                ];
+                    'sections' => array(),
+                );
 
                 if (isset($input['content'][$lang]['sections']) && is_array($input['content'][$lang]['sections'])) {
                     $slugs = $input['content'][$lang]['sections']['slug'] ?? array_column($current_options['content'][$lang]['sections'], 'slug') ?? [];
@@ -78,7 +79,7 @@ class AGCN_sanitizers
                     $titles = $input['content'][$lang]['sections']['title'] ?? array_column($current_options['content'][$lang]['sections'], 'title') ?? [];
                     $bodies = $input['content'][$lang]['sections']['body'] ?? array_column($current_options['content'][$lang]['sections'], 'body') ?? [];
 
-                    $sections = [];
+                    $sections = array();
                     foreach ($titles as $index => $title) {
                         if (isset($bodies[$index]) && !empty($title)) {
                             $slug = sanitize_text_field($slugs[$index]);
@@ -87,12 +88,12 @@ class AGCN_sanitizers
                                 $slug = preg_replace('/[^a-z]/', '', strtolower($slug));
                             }
 
-                            $sections[] = [
+                            $sections[] = array(
                                 'slug' => $slug,
                                 'notice_text' => sanitize_text_field($notice_texts[$index]),
                                 'title' => sanitize_text_field($title),
                                 'body' => wp_kses($bodies[$index], $allowed_tags)
-                            ];
+                            );
                         }
                     }
 
@@ -112,10 +113,10 @@ class AGCN_sanitizers
      * @param array $input The input to sanitize.
      * @return array The sanitized styles.
      */
-    public static function sanitize_styles($input)
+    public static function agcn_sanitize_styles($input)
     {
         $current_options = get_option('agcn_styles');
-        $sanitized = [];
+        $sanitized = array();
 
         if (isset($input['colors']) && is_array($input['colors'])){
             foreach ($input['colors'] as $key => $value) {

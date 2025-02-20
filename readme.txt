@@ -1,19 +1,19 @@
 === AGCN (AI-Generated Content Notifier) ===
 Contributors: macnoc
 Donate link: https://github.com/macnoc
-Tags: javascript, widget, ai, banner, artificial-intelligence, notice
+Tags: ai-content, content-notification, artificial-intelligence, content-disclosure, transparency
 Requires at least: 5.2
 Tested up to: 6.7.2
 Stable tag: 1.0.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-AGCN seamlessly notifies users of AI-generated content and integrates smoothly with both admin and public interfaces.
+AGCN helps website owners notify visitors about AI-generated content through an easy-to-manage notification system.
 
 == Description ==
 
-AGCN is a WordPress plugin that seamlessly integrates with your website to inform visitors about AI-generated content. Built on top of the AGCN JavaScript widget, this plugin provides an easy-to-use interface for WordPress administrators to manage AI content notifications across their site.
-
+AGCN helps website owners notify visitors about AI-generated content through an easy-to-manage notification system. Built on top of the AGCN JavaScript widget, this plugin provides an easy-to-use interface for WordPress administrators to manage AI content notifications across their site.
+    
 = Key Features =
 
 * Easy Configuration: Simple admin interface to manage all settings
@@ -52,6 +52,20 @@ AGCN is lightweight and optimized for performance. The JavaScript bundle is only
 5. Sections settings
 6. Styling settings
 
+== Upgrade Notice ==
+
+= 1.0.0 =
+Initial release of AGCN. Adds AI content notification functionality to WordPress sites.
+
 == Changelog ==
 
-See relsease notes on GitHub: https://github.com/macnoc/AGCN-wordpress/releases
+= 1.0.0 =
+* Initial plugin release
+* Added admin settings panel
+* Added Gutenberg block support
+* Added multi-language support
+* Added customizable styling options
+
+= Documentation =
+
+For detailed documentation, please visit: [AGCN Documentation](https://github.com/macnoc/AGCN-WordPress)

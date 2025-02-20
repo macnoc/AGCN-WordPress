@@ -6,6 +6,7 @@
  * This class handles the loading of the AGCN plugin.
  * It includes methods for enqueuing scripts, initializing widgets, adding block attributes, and registering block attributes.
  * 
+ * @since 1.0.0
  * @package AGCN
  * @author Nabil Makhnouq
  * @version 1.0
@@ -19,24 +20,25 @@ class AGCN_loader
      */
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
-        add_action('wp_footer', [$this, 'init_widget']);
-        add_action('wp_enqueue_scripts', [$this, 'init_styles'], 11);
-        add_action('init', [$this, 'register_block_attributes']);
-        add_action('enqueue_block_editor_assets', [$this, 'enqueue_editor_assets']);
-        add_filter('render_block', [$this, 'add_block_attributes'], 10, 2);
+        add_action('wp_enqueue_scripts', [$this, 'agcn_enqueue_scripts']);
+        add_action('wp_footer', [$this, 'agcn_init_widget']);
+        add_action('wp_enqueue_scripts', [$this, 'agcn_init_styles'], 11);
+        add_action('init', [$this, 'agcn_register_block_attributes']);
+        add_action('enqueue_block_editor_assets', [$this, 'agcn_enqueue_editor_assets']);
+        add_filter('render_block', [$this, 'agcn_add_block_attributes'], 10, 2);
     }
 
     /**
      * Enqueues the scripts for the AGCN plugin.
      */
-    public function enqueue_scripts()
+    public function agcn_enqueue_scripts()
     {
+        $version = defined('WP_DEBUG') && WP_DEBUG ? time() : AGCN_VERSION;
         wp_enqueue_script(
             'agcn-widget',
             AGCN_PLUGIN_URL . 'public/js/agcn.min.js',
             array(),
-            AGCN_VERSION,
+            $version,
             true
         );
 
@@ -47,7 +49,7 @@ class AGCN_loader
     /**
      * Initializes the styles for the AGCN plugin.
      */
-    public function init_styles()
+    public function agcn_init_styles()
     {
         $styles = get_option('agcn_styles', array());
 
@@ -69,7 +71,7 @@ class AGCN_loader
     /**
      * Initializes the widget for the AGCN plugin.
      */
-    public function init_widget()
+    public function agcn_init_widget()
     {
         $options = get_option('agcn_options');
 
@@ -114,7 +116,7 @@ class AGCN_loader
     /**
      * Registers the block attributes for the AGCN plugin.
      */
-    public function register_block_attributes()
+    public function agcn_register_block_attributes()
     {
         $registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 
@@ -133,7 +135,7 @@ class AGCN_loader
     /**
      * Enqueues the editor assets for the AGCN plugin.
      */
-    public function enqueue_editor_assets()
+    public function agcn_enqueue_editor_assets()
     {
         wp_enqueue_script(
             'agcn-editor',
@@ -147,7 +149,7 @@ class AGCN_loader
     /**
      * Adds the block attributes for the AGCN plugin.
      */
-    public function add_block_attributes($block_content, $block)
+    public function agcn_add_block_attributes($block_content, $block)
     {
         $allowed_blocks = array(
             'core/paragraph', 
