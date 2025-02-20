@@ -76,7 +76,7 @@ class AGCN_plugin
      */
     public static function agcn_settings_link($links)
     {
-        $settings_link = '<a href="options-general.php?page=agcn-settings">' . __('Settings', 'agcn') . '</a>';
+        $settings_link = '<a href="options-general.php?page=agcn-settings">' . __('Settings', 'agcn-ai-generated-content-notifier') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
     }
@@ -89,7 +89,7 @@ class AGCN_plugin
     public static function agcn_load_plugin_textdomain()
     {
         load_plugin_textdomain(
-            'agcn',
+            'agcn-ai-generated-content-notifier',
             false,
             dirname(AGCN_PLUGIN_BASENAME) . '/languages/'
         );

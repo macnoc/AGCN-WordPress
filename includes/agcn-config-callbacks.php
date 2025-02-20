@@ -46,7 +46,7 @@ class AGCN_config_callbacks
     ?>
 
         <input type="checkbox" name="agcn_options[config][show_badge]" <?php checked($show_badge); ?>>
-        <label for="agcn_show_badge"><?php esc_attr_e('Show the AGCN badge on the front end.', 'agcn'); ?></label>
+        <label for="agcn_show_badge"><?php esc_attr_e('Show the AGCN badge on the front end.', 'agcn-ai-generated-content-notifier'); ?></label>
     <?php
     }
 
@@ -62,12 +62,12 @@ class AGCN_config_callbacks
     ?>
 
         <select name="agcn_options[config][badge_position]">
-            <option value="top-left" <?php selected(esc_attr($badge_position), 'top-left'); ?>><?php esc_attr_e('Top Left', 'agcn'); ?></option>
-            <option value="top-right" <?php selected(esc_attr($badge_position), 'top-right'); ?>><?php esc_attr_e('Top Right', 'agcn'); ?></option>
-            <option value="bottom-left" <?php selected(esc_attr($badge_position), 'bottom-left'); ?>><?php esc_attr_e('Bottom Left', 'agcn'); ?></option>
-            <option value="bottom-right" <?php selected(esc_attr($badge_position), 'bottom-right'); ?>><?php esc_attr_e('Bottom Right', 'agcn'); ?></option>
+            <option value="top-left" <?php selected(esc_attr($badge_position), 'top-left'); ?>><?php esc_attr_e('Top Left', 'agcn-ai-generated-content-notifier'); ?></option>
+            <option value="top-right" <?php selected(esc_attr($badge_position), 'top-right'); ?>><?php esc_attr_e('Top Right', 'agcn-ai-generated-content-notifier'); ?></option>
+            <option value="bottom-left" <?php selected(esc_attr($badge_position), 'bottom-left'); ?>><?php esc_attr_e('Bottom Left', 'agcn-ai-generated-content-notifier'); ?></option>
+            <option value="bottom-right" <?php selected(esc_attr($badge_position), 'bottom-right'); ?>><?php esc_attr_e('Bottom Right', 'agcn-ai-generated-content-notifier'); ?></option>
         </select>
-        <p class="description"><?php esc_attr_e('Select the position where the badge will be displayed on the screen.', 'agcn'); ?></p>
+        <p class="description"><?php esc_attr_e('Select the position where the badge will be displayed on the screen.', 'agcn-ai-generated-content-notifier'); ?></p>
     <?php
     }
 
@@ -83,7 +83,7 @@ class AGCN_config_callbacks
     ?>
 
         <input type="checkbox" name="agcn_options[config][support]" <?php checked($support); ?>>
-        <label for="agcn_support"><?php esc_attr_e('Support AGCN by displaying a "Powered by" footer note with a link.', 'agcn'); ?></label>
+        <label for="agcn_support"><?php esc_attr_e('Support AGCN by displaying a "Powered by" footer note with a link.', 'agcn-ai-generated-content-notifier'); ?></label>
 <?php
     }
 }

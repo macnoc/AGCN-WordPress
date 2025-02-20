@@ -67,7 +67,7 @@ class AGCN_content_callbacks
         $existing_languages = array_keys($options['content'] ?? []);
 
         if (count(self::agcn_get_available_languages()) === count($existing_languages)) {
-            echo '<p>' . esc_html(__('All languages are already added.', 'agcn')) . '</p>';
+            echo '<p>' . esc_html(__('All languages are already added.', 'agcn-ai-generated-content-notifier')) . '</p>';
             return;
         }
 ?>
@@ -143,7 +143,7 @@ class AGCN_content_callbacks
                     const language = languageSelect.value;
                     if (!language) return;
 
-                    if (!confirm('<?php echo esc_js(esc_attr__('Are you sure you want to remove this language?', 'agcn')); ?>')) {
+                    if (!confirm('<?php echo esc_js(esc_attr__('Are you sure you want to remove this language?', 'agcn-ai-generated-content-notifier')); ?>')) {
                         return;
                     }
 
@@ -189,7 +189,7 @@ class AGCN_content_callbacks
     ?>
 
         <input type="text" name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()) ?>][header]" value="<?php echo esc_attr($header); ?>" class="regular-text large-text">
-        <p class="description"><?php esc_html_e('This text will be displayed above the title as the modal header', 'agcn'); ?></p>
+        <p class="description"><?php esc_html_e('This text will be displayed above the title as the modal header', 'agcn-ai-generated-content-notifier'); ?></p>
     <?php
     }
 
@@ -205,7 +205,7 @@ class AGCN_content_callbacks
     ?>
 
         <input type="text" name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()) ?>][title]" value="<?php echo esc_attr($title); ?>" class="regular-text large-text">
-        <p class="description"><?php esc_html_e('The title of the modal content', 'agcn'); ?></p>
+        <p class="description"><?php esc_html_e('The title of the modal content', 'agcn-ai-generated-content-notifier'); ?></p>
     <?php
     }
 
@@ -228,7 +228,7 @@ class AGCN_content_callbacks
             'teeny' => true,
             'quicktags' => false,
         ]);
-        echo '<p class="description">' . esc_html__('The body of the modal content', 'agcn') . '</p>';
+        echo '<p class="description">' . esc_html__('The body of the modal content', 'agcn-ai-generated-content-notifier') . '</p>';
     }
 
     /**
@@ -243,7 +243,7 @@ class AGCN_content_callbacks
     ?>
 
     <input type="text" name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()) ?>][sections_header]" value="<?php echo esc_attr($sections_header); ?>" class="regular-text large-text">
-    <p class="description"><?php esc_html_e('This text will be displayed above the sections.', 'agcn'); ?></p>
+    <p class="description"><?php esc_html_e('This text will be displayed above the sections.', 'agcn-ai-generated-content-notifier'); ?></p>
     <?php
     }
 
@@ -266,17 +266,17 @@ class AGCN_content_callbacks
                             class="section-slug large-text"
                             name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()); ?>][sections][slug][]"
                             value="<?php echo esc_attr($section['slug']); ?>"
-                            placeholder="<?php esc_attr_e( 'Slug for the section, only a-z.', 'agcn' ); ?>" />
+                            placeholder="<?php esc_attr_e( 'Slug for the section, only a-z.', 'agcn-ai-generated-content-notifier' ); ?>" />
                         <input type="text"
                             class="section-notice-text large-text"
                             name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()); ?>][sections][notice_text][]"
                             value="<?php echo esc_attr($section['notice_text']); ?>"
-                            placeholder="<?php esc_attr_e( 'Notice text for the section', 'agcn' ); ?>" />
+                            placeholder="<?php esc_attr_e( 'Notice text for the section', 'agcn-ai-generated-content-notifier' ); ?>" />
                         <input type="text"
                             class="section-title large-text"
                             name="agcn_options[content][<?php echo esc_attr(self::agcn_get_selected_language()); ?>][sections][title][]"
                             value="<?php echo esc_attr($section['title']); ?>"
-                            placeholder="<?php esc_attr_e('Section Title', 'agcn'); ?>" />
+                            placeholder="<?php esc_attr_e('Section Title', 'agcn-ai-generated-content-notifier'); ?>" />
                         <div class="section-body-container">
                             <?php
                             wp_editor(
@@ -299,7 +299,7 @@ class AGCN_content_callbacks
                     </div>
                 <?php endforeach; ?>
             </div>
-            <button type="button" class="button button-secondary" id="add-section"><?php esc_attr_e('Add New Section', 'agcn'); ?></button>
+            <button type="button" class="button button-secondary" id="add-section"><?php esc_attr_e('Add New Section', 'agcn-ai-generated-content-notifier'); ?></button>
         </div>
 
         <style>
@@ -335,19 +335,19 @@ class AGCN_content_callbacks
                     slugInput.type = 'text';
                     slugInput.className = 'section-slug large-text';
                     slugInput.name = `agcn_options[content][${language}][sections][slug][]`;
-                    slugInput.placeholder = '<?php esc_js(esc_attr_e('Slug for the section, only a-z.', 'agcn')); ?>';
+                    slugInput.placeholder = '<?php esc_js(esc_attr_e('Slug for the section, only a-z.', 'agcn-ai-generated-content-notifier')); ?>';
 
                     const noticeInput = document.createElement('input');
                     noticeInput.type = 'text';
                     noticeInput.className = 'section-notice large-text';
                     noticeInput.name = `agcn_options[content][${language}][sections][notice_text][]`;
-                    noticeInput.placeholder = '<?php esc_js(esc_attr_e('Notice text for the section', 'agcn')); ?>';
+                    noticeInput.placeholder = '<?php esc_js(esc_attr_e('Notice text for the section', 'agcn-ai-generated-content-notifier')); ?>';
 
                     const titleInput = document.createElement('input');
                     titleInput.type = 'text';
                     titleInput.className = 'section-title large-text';
                     titleInput.name = `agcn_options[content][${language}][sections][title][]`;
-                    titleInput.placeholder = '<?php esc_js(esc_attr_e('Section Title', 'agcn')); ?>';
+                    titleInput.placeholder = '<?php esc_js(esc_attr_e('Section Title', 'agcn-ai-generated-content-notifier')); ?>';
 
                     const editorContainer = document.createElement('div');
                     editorContainer.className = 'section-body-container';

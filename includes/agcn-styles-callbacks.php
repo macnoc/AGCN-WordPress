@@ -22,22 +22,22 @@ class AGCN_styles_callbacks
         $options = get_option('agcn_styles');
 
         $colors_labels = array(
-            'main-color' =>  __('Main Color', 'agcn'),
-            'badge-color' =>  __('Badge Color', 'agcn'),
-            'badge-bg-color' =>  __('Badge Background Color', 'agcn'),
-            'badge-bg-color-hover' =>  __('Badge Background Color (Hover)', 'agcn'),
-            'badge-border-color' =>  __('Badge Border Color', 'agcn'),
+            'main-color' =>  __('Main Color', 'agcn-ai-generated-content-notifier'),
+            'badge-color' =>  __('Badge Color', 'agcn-ai-generated-content-notifier'),
+            'badge-bg-color' =>  __('Badge Background Color', 'agcn-ai-generated-content-notifier'),
+            'badge-bg-color-hover' =>  __('Badge Background Color (Hover)', 'agcn-ai-generated-content-notifier'),
+            'badge-border-color' =>  __('Badge Border Color', 'agcn-ai-generated-content-notifier'),
 
-            'modal-color' =>  __('Modal Color', 'agcn'),
-            'modal-bg-color' => __('Modal Background Color', 'agcn'),
-            'modal-border-color' => __('Modal Border Color', 'agcn'),
-            'modal-icon-color' => __('Modal Icon Color', 'agcn'),
-            'modal-support-color' => __('Modal Support Color', 'agcn'),
-            'modal-accordion-open-bg-color' => __('Modal Accordion Open Background Color', 'agcn'),
+            'modal-color' =>  __('Modal Color', 'agcn-ai-generated-content-notifier'),
+            'modal-bg-color' => __('Modal Background Color', 'agcn-ai-generated-content-notifier'),
+            'modal-border-color' => __('Modal Border Color', 'agcn-ai-generated-content-notifier'),
+            'modal-icon-color' => __('Modal Icon Color', 'agcn-ai-generated-content-notifier'),
+            'modal-support-color' => __('Modal Support Color', 'agcn-ai-generated-content-notifier'),
+            'modal-accordion-open-bg-color' => __('Modal Accordion Open Background Color', 'agcn-ai-generated-content-notifier'),
 
-            'notice-color' => __('Notice Color', 'agcn'),
-            'notice-bg-color' => __('Notice Background Color', 'agcn'),
-            'notice-border-color' => __('Notice Border Color', 'agcn'),
+            'notice-color' => __('Notice Color', 'agcn-ai-generated-content-notifier'),
+            'notice-bg-color' => __('Notice Background Color', 'agcn-ai-generated-content-notifier'),
+            'notice-border-color' => __('Notice Border Color', 'agcn-ai-generated-content-notifier'),
         );
 
 ?>
@@ -70,7 +70,7 @@ class AGCN_styles_callbacks
     ?>
 
         <input type="text" name="agcn_styles[badge-offset]" value="<?php echo esc_attr($badge_offset); ?>" class="regular-text">
-        <p class="description"><?php esc_html_e('The space between the badge and the viewport edge.', 'agcn'); ?></p>
+        <p class="description"><?php esc_html_e('The space between the badge and the viewport edge.', 'agcn-ai-generated-content-notifier'); ?></p>
 <?php
     }
 }

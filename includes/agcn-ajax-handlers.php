@@ -40,17 +40,17 @@ class AGCN_ajax_handlers
         try {
             // Check nonce
             if (!check_ajax_referer('agcn_add_language', 'nonce', false)) {
-                wp_send_json_error(__('Security check failed.', 'agcn'));
+                wp_send_json_error(__('Security check failed.', 'agcn-ai-generated-content-notifier'));
             }
 
             // Check user permissions
             if (!current_user_can('manage_options')) {
-                wp_send_json_error(__('You do not have permission to perform this action.', 'agcn'));
+                wp_send_json_error(__('You do not have permission to perform this action.', 'agcn-ai-generated-content-notifier'));
             }
 
             // Check if language is provided
             if (!isset($_POST['language']) || empty($_POST['language'])) {
-                wp_send_json_error(__('Language not provided', 'agcn'));
+                wp_send_json_error(__('Language not provided', 'agcn-ai-generated-content-notifier'));
             }
 
             // Sanitize language input
@@ -60,14 +60,14 @@ class AGCN_ajax_handlers
             $options = get_option('agcn_options');
 
             if (isset($options['content'][$language])) {
-                wp_send_json_error(__('Language already exists', 'agcn'));
+                wp_send_json_error(__('Language already exists', 'agcn-ai-generated-content-notifier'));
             }
 
             // Check if language is available
             $available_languages = AGCN_plugin::agcn_get_config('available_languages');
             $available_languages_keys = array_keys($available_languages);
             if (!in_array($language, $available_languages_keys)) {
-                wp_send_json_error(__('This language is not available', 'agcn'));
+                wp_send_json_error(__('This language is not available', 'agcn-ai-generated-content-notifier'));
             }
             
             $language_name = $available_languages[$language];
@@ -78,7 +78,7 @@ class AGCN_ajax_handlers
             // Update options
             $update_result = update_option('agcn_options', $options);
             if (!$update_result) {
-                wp_send_json_error(__('Failed to update options', 'agcn'));
+                wp_send_json_error(__('Failed to update options', 'agcn-ai-generated-content-notifier'));
             }
 
             // Set transient
@@ -86,7 +86,7 @@ class AGCN_ajax_handlers
                 'type' => 'success',
                 'message' => sprintf(
                     /* translators: %s: The name of the language that was added */
-                    __('Language %s added successfully!', 'agcn'),
+                    __('Language %s added successfully!', 'agcn-ai-generated-content-notifier'),
                     $language_name
                 ),
                 'dismissible' => true
@@ -96,7 +96,7 @@ class AGCN_ajax_handlers
             wp_send_json_success();
         } catch (Exception $e) {
             // Send error response
-            wp_send_json_error(__('An unexpected error occurred.', 'agcn'));
+            wp_send_json_error(__('An unexpected error occurred.', 'agcn-ai-generated-content-notifier'));
         }
     }
 
@@ -111,17 +111,17 @@ class AGCN_ajax_handlers
         try {
             // Check nonce
             if (!check_ajax_referer('agcn_remove_language', 'nonce', false)) {
-                wp_send_json_error(__('Security check failed.', 'agcn'));
+                wp_send_json_error(__('Security check failed.', 'agcn-ai-generated-content-notifier'));
             }
 
             // Check user permissions
             if (!current_user_can('manage_options')) {
-                wp_send_json_error(__('You do not have permission to perform this action.', 'agcn'));
+                wp_send_json_error(__('You do not have permission to perform this action.', 'agcn-ai-generated-content-notifier'));
             }
 
             // Check if language is provided
             if (!isset($_POST['language']) || empty($_POST['language'])) {
-                wp_send_json_error(__('Language not provided', 'agcn'));
+                wp_send_json_error(__('Language not provided', 'agcn-ai-generated-content-notifier'));
             }
 
             // Sanitize language input
@@ -132,12 +132,12 @@ class AGCN_ajax_handlers
 
             // Check if language exists
             if (!isset($options['content'][$language])) {
-                wp_send_json_error(__('Language does not exist', 'agcn'));
+                wp_send_json_error(__('Language does not exist', 'agcn-ai-generated-content-notifier'));
             }
 
             // Check if there is only one language
             if (count($options['content']) <= 1) {
-                wp_send_json_error(__('Cannot remove last language', 'agcn'));
+                wp_send_json_error(__('Cannot remove last language', 'agcn-ai-generated-content-notifier'));
             }
 
             // Get language name
@@ -150,7 +150,7 @@ class AGCN_ajax_handlers
             // Update options
             $update_result = update_option('agcn_options', ['remove_language' => $language]);
             if (!$update_result) {
-                wp_send_json_error(__('Failed to update options', 'agcn'));
+                wp_send_json_error(__('Failed to update options', 'agcn-ai-generated-content-notifier'));
             }
 
             // Set transient
@@ -158,7 +158,7 @@ class AGCN_ajax_handlers
                 'type' => 'success',
                 'message' => sprintf(
                     /* translators: %s: The name of the language that was removed */
-                    __('Language %s removed successfully!', 'agcn'),
+                    __('Language %s removed successfully!', 'agcn-ai-generated-content-notifier'),
                     $language_name
                 ),
                 'dismissible' => true
@@ -168,7 +168,7 @@ class AGCN_ajax_handlers
             wp_send_json_success();
         } catch (Exception $e) {
             // Send error response
-            wp_send_json_error(__('An unexpected error occurred.', 'agcn'));
+            wp_send_json_error(__('An unexpected error occurred.', 'agcn-ai-generated-content-notifier'));
         }
     }
 }
